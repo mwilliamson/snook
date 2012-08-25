@@ -1,0 +1,12 @@
+{
+    "name": "babbs",
+    "version": "0.1.0",
+    "dependencies": {
+        "q": "0.8.8",
+        "lop": "git://github.com/mwilliamson/lop.git"
+    },
+    "devDependencies": {
+        "nodeunit": "0.7.x"
+    }
+}
+
