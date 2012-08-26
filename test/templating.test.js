@@ -28,6 +28,11 @@ exports["Key tags generate empty string if property in chain is missing"] = func
     assertRender(test, "", template.render({})).then(finish(test));
 };
 
+exports["Key tag single dot refers to current context"] = function(test) {
+    var template = templating.compileString("{.}");
+    assertRender(test, "Bob", template.render("Bob")).then(finish(test));
+};
+
 exports["Function tags are called during rendering"] = function(test) {
     var template = templating.compileString(
         "Today is {#formatToday /}",
