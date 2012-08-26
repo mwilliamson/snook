@@ -1,8 +1,8 @@
-var q = require("q");
-
 var templating = require("../../lib/templating");
 var include = require("../../lib/functionTags").include;
 var hole = require("../../lib/functionTags").hole;
+
+var createReader = require("./util").createReader;
 
 var staticContext = {
     include: include,
@@ -64,11 +64,3 @@ exports["include function can fill in holes"] = function(test) {
             test.done();
         }).end();
 };
-
-function createReader(templates) {
-    return {
-        read: function(name) {
-            return q.when(templates[name]);
-        }
-    };
-}
