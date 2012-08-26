@@ -15,6 +15,19 @@ exports["Key tags are replaced with value from context"] = function(test) {
     ).then(finish(test));
 };
 
+exports["Key tags can use dot to retrieve properties"] = function(test) {
+    var template = templating.compileString("{book.author.name}");
+    assertRender(test,
+        "Bob",
+        template.render({book: {author: {name: "Bob"}}})
+    ).then(finish(test));
+};
+
+exports["Key tags generate empty string if property in chain is missing"] = function(test) {
+    var template = templating.compileString("{book.author.name}");
+    assertRender(test, "", template.render({})).then(finish(test));
+};
+
 exports["Function tags are called during rendering"] = function(test) {
     var template = templating.compileString(
         "Today is {#formatToday /}",
