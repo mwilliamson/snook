@@ -1,6 +1,6 @@
 exports.Templates = require("./lib/templating").Templates;
 exports.FileTemplateReader = FileTemplateReader
-exports.createStaticContext = require("./lib/staticContexts").create;
+exports.functionTags = require("./lib/functionTags");
 
 var fs = require("fs");
 var path = require("path");
