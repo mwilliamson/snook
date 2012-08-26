@@ -53,7 +53,7 @@ exports["include function can use context set by named argument"] = function(tes
 
 exports["include function can fill in holes"] = function(test) {
     var reader = createReader({
-        page: "{#include nav context=project}{:title}<h1>Store</h1>{/include}",
+        page: "{#include nav}{:title}<h1>Store</h1>{/include}",
         nav: '{#hole title /}<a href="/">Home</a>'
     });
     

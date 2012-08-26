@@ -20,7 +20,7 @@ exports["Function tags are wrapped in curly braces and start with hash and can s
     test.done();
 };
 
-exports["Function tags can take arguments"] = function(test) {
+exports["Self-closing function tags can take arguments"] = function(test) {
     var nodes = parser.parse("{#formatDate today iso8601 /}");
     test.deepEqual([
         parser.functionTag("formatDate", ["today", "iso8601"])
@@ -28,7 +28,7 @@ exports["Function tags can take arguments"] = function(test) {
     test.done();
 };
 
-exports["Function tags can take named arguments"] = function(test) {
+exports["Self-closing function tags can take named arguments"] = function(test) {
     var nodes = parser.parse("{#formatDate date=today format=iso8601 /}");
     test.deepEqual([
         parser.functionTag("formatDate", {date: "today", format: "iso8601"})
@@ -52,6 +52,16 @@ exports["Function tags can have named body"] = function(test) {
         parser.functionTag("if", ["loggedIn"], {
             block: [parser.literal("Logged in")],
             "else": [parser.literal("Who are you?")]
+        })
+    ], nodes);
+    test.done();
+};
+
+exports["Function tags can take named arguments"] = function(test) {
+    var nodes = parser.parse("{#formatDate date=today format=iso8601}{/formatDate}");
+    test.deepEqual([
+        parser.functionTag("formatDate", {date: "today", format: "iso8601"}, {
+            block: []
         })
     ], nodes);
     test.done();
