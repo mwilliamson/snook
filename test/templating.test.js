@@ -61,7 +61,7 @@ exports["Function tags can use context"] = function(test) {
     function toUpperCase(args) {
         return function(context) {
             var variableName = args[0];
-            return context[variableName].toUpperCase();
+            return context.get(variableName).toUpperCase();
         };
     }
     
@@ -78,7 +78,7 @@ exports["Function tags can use body"] = function(test) {
     function templateIf(args, bodies) {
         var variableName = args[0];
         return function(context) {
-            if (context[variableName]) {
+            if (context.get(variableName)) {
                 return bodies.block.render(context);
             } else {
                 return "";
@@ -101,7 +101,7 @@ exports["Function tags can use named bodies"] = function(test) {
     function templateIf(args, bodies) {
         return function(context) {
             var variableName = args[0];
-            if (context[variableName]) {
+            if (context.get(variableName)) {
                 return bodies.block.render(context);
             } else {
                 return bodies["else"].render(context);
